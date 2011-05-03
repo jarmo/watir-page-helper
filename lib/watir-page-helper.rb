@@ -232,17 +232,29 @@ module WatirPageHelper
       end
     end
 
+
     # adds two methods - one to return the text within
     # a row and one to return a table row element
-    def row name, identifier=nil, parent_type=nil, parent_identifier=nil
+    def row name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_row").text
       end
       define_method("#{name}_row") do
-        parent = parent_type.nil? ? @browser : @browser.send("#{parent_type.to_s}", parent_identifier)
-        identifier.nil? ? parent.row : parent.row(identifier)
+        block ? block.call(@browser) : @browser.row(identifier)
       end
     end
+
+#    # adds two methods - one to return the text within
+#    # a row and one to return a table row element
+#    def row name, identifier=nil, parent_type=nil, parent_identifier=nil
+#      define_method(name) do
+#        self.send("#{name}_row").text
+#      end
+#      define_method("#{name}_row") do
+#        parent = parent_type.nil? ? @browser : @browser.send("#{parent_type.to_s}", parent_identifier)
+#        identifier.nil? ? parent.row : parent.row(identifier)
+#      end
+#    end
 
     # adds a method to return the text of a table data <td> element
     # and another one to return the cell object
