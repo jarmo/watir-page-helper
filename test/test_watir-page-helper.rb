@@ -110,4 +110,26 @@ describe "Watir Page Helper" do
     page.test_table_row_1_cell_1_cell.exist?.should be_true
   end
 
+  it "should support adding two methods for divs" do
+    page = PageDiv.new @browser, true
+    page.information.should == "This is a header\n\nThis is a paragraph."
+    page.information_div.exist?.should be_true
+  end
+
+  it "should support adding two methods for spans" do
+    page = PageSpan.new @browser, true
+    page.background.should == "Some background text in a span."
+    page.background_span.exist?.should be_true
+  end
+
+  it "should support adding two methods for paragraphs" do
+    page = PageParagraph.new @browser, true
+    page.paragraph.should == "This is a paragraph."
+    page.paragraph_p.exist?.should be_true
+  end
+
+
+
+
+
 end

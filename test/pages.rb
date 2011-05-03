@@ -79,11 +79,21 @@ end
 class PageTable < BasePageClass
   direct_url TEST_URL
   table :test_table, :id => "myTable"
-  row :test_table_row_1 do | test_table |
-    test_table.tr
-  end
-  cell :test_table_row_1_cell_1 do |test_table_row_1|
-    test_table_row_1.td
-  end
+  row(:test_table_row_1) { | test_table |  test_table.tr }
+  cell(:test_table_row_1_cell_1) { |test_table_row_1 | test_table_row_1.td }
 end
 
+class PageDiv < BasePageClass
+  direct_url TEST_URL
+  div :information, :id => "myDiv"
+end
+
+class PageSpan < BasePageClass
+  direct_url TEST_URL
+  span :background, :id => "mySpan"
+end
+
+class PageParagraph < BasePageClass
+  direct_url TEST_URL
+  p :paragraph, :id => "myP"
+end

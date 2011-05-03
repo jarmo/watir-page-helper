@@ -232,9 +232,19 @@ module WatirPageHelper
       end
     end
 
-
-    # adds two methods - one to return the text within
-    # a row and one to return a table row element
+    # Generates two row methods to:
+    # * return the text from a table row;
+    # * return the row element.
+    #
+    # @param [Symbol] name The name of the row element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a row to generate methods
+    #  row(:test_table_row_1) { | test_table |  test_table.tr }
+    #  page.test_table_row_1.should == "Test Table Col 1 Test Table Col 2"
+    #  page.test_table_row_1_row.cells.length.should == 2
     def row name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_row").text
@@ -244,8 +254,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method to return the text of a table data <td> element
-    # and another one to return the cell object
+    # Generates two row methods to:
+    # * return the text from a table cell;
+    # * return the cell element.
+    #
+    # @param [Symbol] name The name of the cell element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a cell to generate methods
+    #  cell(:test_table_row_1_cell_1) { |test_table_row_1 | test_table_row_1.td }
+    #  page.test_table_row_1_cell_1.should == "Test Table Col 1"
+    #  page.test_table_row_1_cell_1_cell.exist?.should be_true
     def cell name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_cell").text
@@ -255,8 +276,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <div>
-    # and another method that returns the div element
+    # Generates two div methods to:
+    # * return the text from a div;
+    # * return the div element.
+    #
+    # @param [Symbol] name The name of the div element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a div to generate methods
+    #  div :information, :id => "myDiv"
+    #  page.information.should == "This is a header\n\nThis is a paragraph."
+    #  page.information_div.exist?.should be_true
     def div name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_div").text
@@ -266,8 +298,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <span>
-    # and another method that returns the span element
+    # Generates two span methods to:
+    # * return the text from a span;
+    # * return the span element.
+    #
+    # @param [Symbol] name The name of the span element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a span to generate methods
+    #  span :information, :id => "mySpan"
+    #  page.information.should == "This is a header\n\nThis is a paragraph."
+    #  page.information_span.exist?.should be_true
     def span name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_span").text
@@ -277,8 +320,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <p>
-    # and another method that returns the div element
+    # Generates two paragraph methods to:
+    # * return the text from a p;
+    # * return the p element.
+    #
+    # @param [Symbol] name The name of the p element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a paragraph to generate methods
+    #  p :paragraph, :id => "myP"
+    #  page.paragraph.should == "This is a paragraph."
+    #  page.paragraph_p.exist?.should be_true
     def p name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_p").text
