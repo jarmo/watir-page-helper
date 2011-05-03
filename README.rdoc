@@ -1,6 +1,10 @@
 = watir-page-helper
 
-Description goes here.
+This is a page helper for Watir/Watir-WebDriver that allows use easy access to elements.
+
+== Credits
+
+I originally saw this idea from 
 
 == Contributing to watir-page-helper
  
