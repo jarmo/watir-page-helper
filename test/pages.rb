@@ -82,5 +82,8 @@ class PageTable < BasePageClass
   row :test_table_row_1 do | test_table |
     test_table.tr
   end
+  cell :test_table_row_1_cell_1 do |test_table_row_1|
+    test_table_row_1.td
+  end
 end
 

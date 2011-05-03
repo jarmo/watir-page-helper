@@ -240,21 +240,9 @@ module WatirPageHelper
         self.send("#{name}_row").text
       end
       define_method("#{name}_row") do
-        block ? block.call(@browser) : @browser.row(identifier)
+        block ? block.call(@browser) : @browser.tr(identifier)
       end
     end
-
-#    # adds two methods - one to return the text within
-#    # a row and one to return a table row element
-#    def row name, identifier=nil, parent_type=nil, parent_identifier=nil
-#      define_method(name) do
-#        self.send("#{name}_row").text
-#      end
-#      define_method("#{name}_row") do
-#        parent = parent_type.nil? ? @browser : @browser.send("#{parent_type.to_s}", parent_identifier)
-#        identifier.nil? ? parent.row : parent.row(identifier)
-#      end
-#    end
 
     # adds a method to return the text of a table data <td> element
     # and another one to return the cell object
@@ -263,7 +251,7 @@ module WatirPageHelper
         self.send("#{name}_cell").text
       end
       define_method("#{name}_cell") do
-        block ? block.call(@browser) : @browser.cell(identifier)
+        block ? block.call(@browser) : @browser.td(identifier)
       end
     end
 

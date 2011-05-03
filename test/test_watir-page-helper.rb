@@ -105,9 +105,9 @@ describe "Watir Page Helper" do
   end
 
   it "should support adding two methods for table cells" do
-#    page = PageTable.new @browser, true
-#    page.test_table_row_1_cell_1.should == "Test Table Col 1"
-#    page.test_table.row_1_cell_1_cell.exist?.should be_true
+    page = PageTable.new @browser, true
+    page.test_table_row_1_cell_1.should == "Test Table Col 1"
+    page.test_table_row_1_cell_1_cell.exist?.should be_true
   end
 
 end
