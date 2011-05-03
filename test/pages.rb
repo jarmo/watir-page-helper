@@ -80,7 +80,7 @@ class PageTable < BasePageClass
   direct_url TEST_URL
   table :test_table, :id => "myTable"
   row :test_table_row_1 do | test_table |
-    test_table.row
+    test_table.tr
   end
 end
 
