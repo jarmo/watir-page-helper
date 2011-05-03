@@ -4,7 +4,7 @@ This is a page helper for Watir/Watir-WebDriver that allows use easy access to e
 
 == Credits
 
-I originally saw this idea from 
+I originally saw this idea from Jeff Morgan - so full credit goes to him: http://www.cheezyworld.com/
 
 == Contributing to watir-page-helper
  
