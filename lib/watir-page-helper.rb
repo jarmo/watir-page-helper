@@ -1,11 +1,15 @@
+# A helper mixin to make accessing web elements via Watir-WebDriver easier.
+## This module assumes there is a @browser variable available.
 module WatirPageHelper
-  # A helper mixin to make accessing web elements via Watir-WebDriver easier.
-  # This module assumes there is a @browser variable available.
 
+  # A method that is called when this Module is included into a class
+  # @param [Class] cls The class that this module is being included in the literal expected title for the page
+  # @return [Nil]
   def self.included(cls)
     cls.extend ClassMethods
   end
 
+  # A collection of class methods that generate helper methods that are mixed into a calling class.
   module ClassMethods
 
     # Creates a method that compares the expected_title of a page against the actual.
@@ -408,9 +412,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a
-    # <form> element and another that returns the
-    # form element
+    # Generates two form methods to:
+    # * return the text from a form;
+    # * return the form element.
+    #
+    # @param [Symbol] name The name of the form element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a form to generate methods
+    #  form :details, :id => "myForm"
+    #  page.details.should == "My Form Text"
+    #  page.details_form.exist?.should be_true
     def form name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_form").text
@@ -420,27 +434,35 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns a the content of a
-    # <frame> element and another that returns the
-    # frame element
-    def frame name, identifier=nil, &block
-      define_method(name) do
-        self.send("#{name}_frame").text
-      end
-      define_method("#{name}_frame")  do
-        block ? block.call(@browser) : @browser.frame(identifier)
-      end
-    end
-
-    # adds a method that returns an image <image> element
+    # Generates a method to return an image element
+    #
+    # @param [Symbol] name The name of the image element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a image to generate method
+    #  image :succulent, :id => "mySucculentImage"
+    #  page.succulent.exist?.should be_true
     def image name, identifier=nil, &block
       define_method(name) do
         block ? block.call(@browser) : @browser.image(identifier)
       end
     end
 
-    # adds a method that returns the content of an li
-    # and another method that returns the li element
+    # Generates two li methods to:
+    # * return the text from a li;
+    # * return the li element.
+    #
+    # @param [Symbol] name The name of the li element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a li to generate methods
+    #  li :item, :id => "myLi"
+    #  page.item.should == "My List Item Text"
+    #  page.item_li.exist?.should be_true
     def li name, identifier=nil, &block
       define_method name do
         self.send("#{name}_li").text
@@ -450,8 +472,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h1
-    # and another method that returns the h1 element
+    # Generates two h1 methods to:
+    # * return the text from a h1;
+    # * return the h1 element.
+    #
+    # @param [Symbol] name The name of the h1 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h1 to generate methods
+    #  h1 :heading_one, :id => "myH1"
+    #  page.heading_one.should == "My Heading One"
+    #  page.heading_one_h1.exist?.should be_true
     def h1 name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_h1").text
@@ -461,8 +494,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h2
-    # and another method that returns the h1 element
+    # Generates two h2 methods to:
+    # * return the text from a h2;
+    # * return the h2 element.
+    #
+    # @param [Symbol] name The name of the h2 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h1 to generate methods
+    #  h2 :heading_two, :id => "myH2"
+    #  page.heading_two.should == "My Heading Two"
+    #  page.heading_two_h2.exist?.should be_true
     def h2 name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_h2").text
@@ -472,8 +516,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h3
-    # and another method that returns the h3 element
+    # Generates two h3 methods to:
+    # * return the text from a h3;
+    # * return the h3 element.
+    #
+    # @param [Symbol] name The name of the h3 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h3 to generate methods
+    #  h2 :heading_three, :id => "myH3"
+    #  page.heading_three.should == "My Heading Three"
+    #  page.heading_three_h3.exist?.should be_true
     def h3 name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_h3").text
@@ -483,8 +538,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h4
-    # and another method that returns the h4 element
+    # Generates two h4 methods to:
+    # * return the text from a h4;
+    # * return the h4 element.
+    #
+    # @param [Symbol] name The name of the h4 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h4 to generate methods
+    #  h4 :heading_four, :id => "myH4"
+    #  page.heading_four.should == "My Heading Four"
+    #  page.heading_four_h4.exist?.should be_true
     def h4 name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_h4").text
@@ -494,8 +560,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h5
-    # and another method that returns the h5 element
+    # Generates two h5 methods to:
+    # * return the text from a h5;
+    # * return the h5 element.
+    #
+    # @param [Symbol] name The name of the h5 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h5 to generate methods
+    #  h2 :heading_five, :id => "myH5"
+    #  page.heading_five.should == "My Heading Five"
+    #  page.heading_five_h5.exist?.should be_true
     def h5 name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_h5").text
@@ -505,8 +582,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of an h6
-    # and another method that returns the h6 element
+    # Generates two h6 methods to:
+    # * return the text from a h6;
+    # * return the h6 element.
+    #
+    # @param [Symbol] name The name of the h6 element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a h6 to generate methods
+    #  h2 :heading_six, :id => "myH6"
+    #  page.heading_six.should == "My Heading Six"
+    #  page.heading_six_h6.exist?.should be_true
     def h6 name, identifier=nil, &block
       define_method(name) do
          self.send("#{name}_h6").text

@@ -104,3 +104,28 @@ class PageDlDtDd < BasePageClass
   dt(:definition_type) { | definition_list_dl | definition_list_dl.dt }
   dd(:definition_data) { | definition_type_dt | definition_type_dt.dd }
 end
+
+class PageForm < BasePageClass
+  direct_url TEST_URL
+  form :main_form, :name => "myForm"
+end
+
+class PageImage < BasePageClass
+  direct_url TEST_URL
+  image :succulent_image, :id => "myImage"
+end
+
+class PageLi < BasePageClass
+  direct_url TEST_URL
+  li :blue_item, :id => "blueLi"
+end
+
+class PageHeadings < BasePageClass
+  direct_url TEST_URL
+  h1 :heading_one, :id => "myh1"
+  h2 :heading_two, :id => "myh2"
+  h3 :heading_three, :id => "myh3"
+  h4 :heading_four, :id => "myh4"
+  h5 :heading_five, :id => "myh5"
+  h6 :heading_six, :id => "myh6"
+end

@@ -138,8 +138,36 @@ describe "Watir Page Helper" do
     page.definition_data_dd.exist?.should be_true
   end
 
+  it "should support adding two methods for a form" do
+    page = PageForm.new @browser, true
+    page.main_form.should == "First name:\nLast name:\nCar model:\nHonda\n\nMazda\n\nToyota\n\nDo you agree?: I agree\nHigh\nMedium\nLow"
+    page.main_form_form.exist?.should be_true
+  end
 
+  it "should support adding a method for a image" do
+    page = PageImage.new @browser, true
+    page.succulent_image.exist?.should be_true
+  end
 
+  it "should support adding two methods for a li" do
+    page = PageLi.new @browser, true
+    page.blue_item.should == "Blue"
+    page.blue_item_li.exist?.should be_true
+  end
 
-
+  it "should support adding two methods for each heading attribute" do
+    page = PageHeadings.new @browser, true
+    page.heading_one.should == "Heading One"
+    page.heading_two.should == "Heading Two"
+    page.heading_three.should == "Heading Three"
+    page.heading_four.should == "Heading Four"
+    page.heading_five.should == "Heading Five"
+    page.heading_six.should == "Heading Six"
+    page.heading_one_h1.exist?.should be_true
+    page.heading_two_h2.exist?.should be_true
+    page.heading_three_h3.exist?.should be_true
+    page.heading_four_h4.exist?.should be_true
+    page.heading_five_h5.exist?.should be_true
+    page.heading_six_h6.exist?.should be_true
+  end
 end
