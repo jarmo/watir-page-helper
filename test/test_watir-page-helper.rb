@@ -128,6 +128,16 @@ describe "Watir Page Helper" do
     page.paragraph_p.exist?.should be_true
   end
 
+  it "should support adding two methods each for dl, dt, dd" do
+    page = PageDlDtDd.new @browser, true
+    page.definition_list.should == "Succulents\n\n- water-retaining plants adapted to arid climates or soil conditions.\n\nCactus\n\n- plants who distinctive appearance is a result of adaptations to conserve water in dry and/or hot environments."
+    page.definition_list_dl.exist?.should be_true
+    page.definition_type.should == "Succulents"
+    page.definition_type_dt.exist?.should be_true
+    page.definition_data.should == "- water-retaining plants adapted to arid climates or soil conditions."
+    page.definition_data_dd.exist?.should be_true
+  end
+
 
 
 

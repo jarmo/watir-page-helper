@@ -97,3 +97,10 @@ class PageParagraph < BasePageClass
   direct_url TEST_URL
   p :paragraph, :id => "myP"
 end
+
+class PageDlDtDd < BasePageClass
+  direct_url TEST_URL
+  dl :definition_list, :id => "myDl"
+  dt(:definition_type) { | definition_list_dl | definition_list_dl.dt }
+  dd(:definition_data) { | definition_type_dt | definition_type_dt.dd }
+end

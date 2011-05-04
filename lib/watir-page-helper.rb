@@ -342,8 +342,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <dd>
-    # and another method that returns the dd element
+    # Generates two dd methods to:
+    # * return the text from a dd;
+    # * return the dd element.
+    #
+    # @param [Symbol] name The name of the dd element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a dd to generate methods
+    #  dd :definition_data, :id => "myDD"
+    #  page.definition_data.should == "This is a dd"
+    #  page.definition_data_dd.exist?.should be_true
     def dd name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_dd").text
@@ -353,8 +364,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <dl>
-    # and another that returns the dl element
+    # Generates two dl methods to:
+    # * return the text from a dl;
+    # * return the dl element.
+    #
+    # @param [Symbol] name The name of the dl element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a dl to generate methods
+    #  dl :definition_list, :id => "myDL"
+    #  page.definition_list.should == "This is a dl"
+    #  page.definition_list_dl.exist?.should be_true
     def dl name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_dl").text
@@ -364,8 +386,19 @@ module WatirPageHelper
       end
     end
 
-    # adds a method that returns the content of a <dt>
-    # and another that returns the dt element
+    # Generates two dt methods to:
+    # * return the text from a dt;
+    # * return the dt element.
+    #
+    # @param [Symbol] name The name of the dt element (used to generate the methods)
+    # @param [optional, Hash] identifier A set of key, value pairs to identify the element
+    # @param block
+    # @return [Nil]
+    #
+    # @example Specify a dt to generate methods
+    #  dt :definition_type, :id => "myDT"
+    #  page.definition_type.should == "This is a dt"
+    #  page.definition_type_dt.exist?.should be_true
     def dt name, identifier=nil, &block
       define_method(name) do
         self.send("#{name}_dt").text
