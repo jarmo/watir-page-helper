@@ -30,7 +30,8 @@ Gem::Specification.new do |s|
     "test/pages.rb",
     "test/test.html",
     "test/test.png",
-    "test/test_watir-page-helper.rb"
+    "test/test_watir-page-helper.rb",
+    "watir-page-helper.gemspec"
   ]
   s.homepage = %q{http://github.com/alisterscott/watir-page-helper}
   s.licenses = ["MIT"]
