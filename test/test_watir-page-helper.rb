@@ -1,8 +1,6 @@
 require 'helper'
 require 'pages'
 
-TEST_URL = "file:///#{File.dirname(__FILE__)}/test.html"
-
 describe "Watir Page Helper" do
   before(:all) { @browser = Watir::Browser.new :firefox }
   after(:all) { @browser.close }
@@ -17,24 +15,24 @@ describe "Watir Page Helper" do
 
   it "should go to the correct url on initialize if set in page class, and check correct literal title" do
     page = PageCorrectTitle.new @browser, true
-    page.url.should == TEST_URL
+    page.url.should == BasePageClass::TEST_URL
     page.title.should == "HTML Document Title"
   end
 
   it "should go to the correct url on initialize if set in page class, and check correct title pattern" do
     page = PageCorrectTitleRegExp.new @browser, true
-    page.url.should == TEST_URL
+    page.url.should == BasePageClass::TEST_URL
     page.title.should =~ /^HTML Document Title$/
   end
 
   it "should check the correct literal title of an existing open page" do
-    @browser.goto TEST_URL
+    @browser.goto BasePageClass::TEST_URL
     page = PageCorrectTitle.new @browser
     page.title.should == "HTML Document Title"
   end
 
   it "should go to the correct url on initialize if set in page class, and check correct title pattern" do
-    @browser.goto TEST_URL
+    @browser.goto BasePageClass::TEST_URL
     page = PageCorrectTitleRegExp.new @browser, true
     page.title.should =~ /^HTML Document Title$/
   end

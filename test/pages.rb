@@ -1,7 +1,7 @@
 class BasePageClass
   include WatirPageHelper
 
-  TEST_URL = "file:///#{File.dirname(__FILE__)}/test.html"
+  TEST_URL = "file:///#{File.expand_path(File.dirname(__FILE__))}/test.html"
 
   def initialize browser, visit = false
     @browser = browser
