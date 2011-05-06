@@ -8,11 +8,11 @@ describe "Watir Page Helper" do
   after(:all) { @browser.close }
 
   it "should raise an error when the expected literal title doesn't match actual title" do
-    lambda { PageIncorrectTitle.new @browser, true }.should raise_error "Expected title 'not expected' instead of 'HTML Document Title'"
+    lambda { PageIncorrectTitle.new @browser, true }.should raise_error("Expected title 'not expected' instead of 'HTML Document Title'")
   end
 
   it "should raise an error when the expected title pattern doesn't match actual title" do
-    lambda { PageIncorrectTitleRegExp.new @browser, true }.should raise_error "Expected title '(?-mix:.*not expected.*)' instead of 'HTML Document Title'"
+    lambda { PageIncorrectTitleRegExp.new @browser, true }.should raise_error("Expected title '(?-mix:.*not expected.*)' instead of 'HTML Document Title'")
   end
 
   it "should go to the correct url on initialize if set in page class, and check correct literal title" do
@@ -45,7 +45,7 @@ describe "Watir Page Helper" do
   end
 
   it "should check for the presence of an element when initializing a page - and raise an error if not present" do
-    lambda { PageExpectNonElement.new @browser }.should raise_error "timed out after 1 seconds, waiting for {:name=>\"doesntexist\", :tag_name=>\"input or textarea\", :type=>\"(any text type)\"} to become present", Watir::Wait::TimeoutError
+    lambda { PageExpectNonElement.new @browser }.should raise_error("timed out after 1 seconds, waiting for {:name=>\"doesntexist\", :tag_name=>\"input or textarea\", :type=>\"(any text type)\"} to become present", Watir::Wait::TimeoutError)
     @browser.text_field(:id => "doesnt exist").exist?.should be_false
   end
 
